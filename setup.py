@@ -28,23 +28,23 @@ import ctypes.util
 
 # These are the definitions that we need 
 cuse_export_regex = ['^FUSE_SET_.*', 
-			'^XATTR_.*', 
-			'fuse_reply_.*', 
-			'cuse_.*',
-			'CUSE_.*', 
-			'fuse_chan.*']
-cuse_export_symbols = ['fuse_set_signal_handlers', 
-			    'fuse_session_add_chan',
-			    'fuse_session_loop_mt', 
-			    'fuse_session_remove_chan',
-			    'fuse_remove_signal_handlers',
-			    'fuse_session_destroy',
-			    'fuse_req_ctx',
-			    'fuse_session_loop', 
-			    'ENOATTR', 
-			    'ENOTSUP',
-			    'fuse_version',
-			    'fuse_kern_chan_new']
+            '^XATTR_.*',
+            'fuse_reply_.*',
+            'cuse_.*',
+            'CUSE_.*',
+            'fuse_chan.*']
+cuse_export_symbols = ['fuse_set_signal_handlers',
+                'fuse_session_add_chan',
+                'fuse_session_loop_mt',
+                'fuse_session_remove_chan',
+                'fuse_remove_signal_handlers',
+                'fuse_session_destroy',
+                'fuse_req_ctx',
+                'fuse_session_loop',
+                'ENOATTR',
+                'ENOTSUP',
+                'fuse_version',
+                'fuse_kern_chan_new']
 
 class build_ctypes(Command):
 
@@ -59,7 +59,7 @@ class build_ctypes(Command):
         pass
 
     def do_ctypes(self, header="fuse_ctypes.h", output="ctypes_api.py", 
-		regex=cuse_export_regex, symbols=cuse_export_symbols, libs=['fuse']):
+        regex=cuse_export_regex, symbols=cuse_export_symbols, libs=['fuse']):
         '''Create ctypes API to given headers'''
 
 
@@ -73,10 +73,10 @@ class build_ctypes(Command):
         cflags = self.get_cflags()
         print('Using cflags: %s' % ' '.join(cflags))
 
-	for l in libs:
-	    if not ctypes.util.find_library(l):
-        	print('Could not find %s library' %l, file=sys.stderr)
-        	sys.exit(1)
+        for l in libs:
+            if not ctypes.util.find_library(l):
+                print('Could not find %s library' %l, file=sys.stderr)
+                sys.exit(1)
 
         # Create temporary XML file
         tmp_fh = tempfile.NamedTemporaryFile()
